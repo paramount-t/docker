@@ -1,3 +1,5 @@
+## docker
+
 ### 基本操作
 
 #### 删除容器
@@ -300,3 +302,192 @@ veth-pair都是成对存在的
 
 
 
+
+
+#### dockercompose
+
+定义，运行多个容器
+
+yaml file配置文件
+
+single command	 
+
+```shell
+Using Compose is basically a three-step process:
+
+Define your app’s environment with a Dockerfile so it can be reproduced anywhere.
+
+Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
+
+Run docker compose up and the Docker compose command starts and runs your entire app. You can alternatively run docker-compose up using the docker-compose binary.
+
+A docker-compose.yml looks like this:
+
+
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+      - logvolume01:/var/log
+    links:
+      - redis
+  redis:
+    image: redis
+volumes:
+  logvolume01: {}
+  
+For more information about the Compose file, see the Compose file reference.
+
+Compose has commands for managing the whole lifecycle of your application:
+
+Start, stop, and rebuild services
+View the status of running services
+Stream the log output of running services
+Run a one-off command on a service
+```
+
+作用：批量服务编排
+
+> compose是docker官方开源项目
+>
+> dockerfile让程序在任何地方运行
+
+```yaml
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+      - logvolume01:/var/log
+    links:
+      - redis
+  redis:
+    image: redis
+volumes:
+  logvolume01: {}
+  
+```
+
+ compose :
+
+- 服务services，容器，应用（web，redis，mysql）
+- 项目project，一组关联的容器
+
+
+
+#### [国内安装docker-compose]([国内安装docker-compose - 简书 (jianshu.com)](https://www.jianshu.com/p/8268bd2ea244))
+
+
+
+
+
+#### [快速开始]([Get started with Docker Compose | Docker Documentation](https://docs.docker.com/compose/gettingstarted/)	)
+
+[yaml规则]([Compose file | Docker Documentation](https://docs.docker.com/compose/compose-file/))
+
+
+
+```yaml
+#3层
+
+vereison: '' #版本
+services: '' #服务
+	服务1: web
+	#服务配置
+	images
+	build 
+	network
+	....
+	服务2: redis
+	
+#其他配置 网络/卷 全局规则
+volumes；
+network:
+configs:
+```
+
+##### 开源项目
+
+1下载项目（docker-compose yaml）
+
+2 如果需要文件（dockerfile）
+
+3文件准备齐全（直接一键启动项目）
+
+
+
+jar包+Dockerfile+docker-compose.yml 直接启动
+
+
+
+
+
+#### Doxker Swarm集群管理和编排
+
+##### RAFT一致性算法
+
+保证大多数节点可以使用
+
+
+
+```shell
+docker run 容器启动，不具有扩缩容器
+docker servoce 服务 具有扩缩容器，滚动更新
+```
+
+
+
+###### swarm
+
+docker可以初始化一个swarm集群，其他节点可以加入（管理，工作者）
+
+
+
+###### Node
+
+就是一个docker节点，多个节点就组成了一个网络集群
+
+###### service
+
+任务，可以在管理节点或者工作节点来运行，核心，用户访问
+
+###### Task
+
+容器内的命令，细节任务
+
+
+
+命令->管理->api->调度->工作节点（创建task容器维护创建）
+
+
+
+##### 拓展 网络模式
+
+
+
+Swarm
+
+OVerlay
+
+ingress 特殊的 overlay网络，负载均衡，IPVSVIP
+
+
+
+
+
+## 进阶 k8s
+
+云原生时代
+
+云应用
+
+
+
+### go语言

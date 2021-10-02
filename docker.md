@@ -124,7 +124,7 @@ Rancher(CI/CD)
 
 
 
-## commit 镜像
+### commit 镜像
 
 ```shell
 docker commit 提交容器为一个新的版本
@@ -212,7 +212,7 @@ ro说明这个路径只能通过宿主机来操作，容器内部无法操作
 
 
 
-##### Dockerfile
+##### 初识Dockerfile
 
 > Dockerfile 就是用来构建docker镜像的文件 命令脚本
 >
@@ -242,4 +242,61 @@ docker run -d -p 3310:3306 -e MYSQL_ROOT_PASSWORD=password--name mysql02--volume
 
 #### 结论
 
-容器之间配置信息的传递，数据容器卷的生命周期一直持续到没有容器使用为止
+容器之间配置信息的传递，数据容器卷的生命周期一直持续到没有容器使用为止，但一旦持久化到本地，本地数据不会被删除
+
+
+
+#### Dockerfile
+
+dockerfile 是用来构建docker镜像的文件，命令参数脚本
+
+构建步骤：
+
+1 编写一个dockerfile文件
+
+2 docker build 构建成为一个镜像
+
+3 docker run 运行镜像
+
+4 docker push 发布镜像（DockerHub，阿里云镜像仓库）
+
+##### 基础知识
+
+1 每个保留关键字（指令）都必须是大写字母
+
+2 执行指令都是从上向下构成的
+
+3 #表示注释
+
+4  每一个指令都会提交一个新的镜像，并提交
+
+###### docker三部曲 开发，部署，运维	
+
+DockerFile 构建文件，定义了一切的步骤，源代码
+
+DockerImages 通过DockerFIle构建生成的镜像，最终发布和运行产品，原来是jar war 包
+
+Docker容器 容器就是镜像运行起来提供服务器的
+
+#### Dockerfile 
+
+![dockerfile命令 的图像结果](https://tse4-mm.cn.bing.net/th/id/OIP-C.p3NmHHlewBvLwukFPGudFgHaFV?w=241&h=180&c=7&r=0&o=5&dpr=1.12&pid=1.7)
+
+#### [Docker网络]([(72条消息) Docker学习（五）docker网络（Docker0、evth-pair 技术、--link、docker network）_Pluto.的博客-CSDN博客](https://blog.csdn.net/weixin_45677119/article/details/108187604?ops_request_misc=%7B%22request%5Fid%22%3A%22163309592216780366529199%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=163309592216780366529199&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-108187604.first_rank_v2_pc_rank_v29&utm_term=evth-pair&spm=1018.2226.3001.4187))
+
+桥接
+
+none
+
+-link
+
+veth-pair都是成对存在的
+
+
+
+#### [docker搭建redis集群]([Docker搭建Redis Cluster集群 - 云+社区 - 腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1838120))
+
+#### 构建springboot项目
+
+
+
